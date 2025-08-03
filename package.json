@@ -1,0 +1,43 @@
+{
+  "name": "grid-assessment",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@4.9.2",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "scripts": {
+    "adr/preview": "yarn log4brains preview",
+    "adr/new": "yarn log4brains adr new",
+    "start": "concurrently 'cypress open --component --browser edge' 'yarn react-devtools'",
+    "test/component": "cypress run --component --browser edge",
+    "test/component/update": "(yarn run test/component || true) && cypress-image-diff-html-report start --reportJsonDir visual-tests/report --autoOpen"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@types/cypress": "^1.1.6",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.2.0",
+    "cypress": "^14.5.3",
+    "cypress-cdp": "^1.6.82",
+    "cypress-image-diff-html-report": "^2.2.0",
+    "cypress-image-diff-js": "^2.4.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jsonc-eslint-parser": "^2.4.0",
+    "log4brains": "patch:log4brains@npm%3A1.1.0#~/.yarn/patches/log4brains-npm-1.1.0-a7df121b2c.patch",
+    "prettier": "^3.6.2",
+    "react-devtools": "^6.1.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^6.3.5"
+  }
+}
