@@ -7,7 +7,7 @@ ADRs may be viewed in the ADO wiki or previewed locally (see instructions below)
 To preview the knowledge base locally, run:
 
 ```bash
-yarn run adr/preview
+npm run adr/preview
 ```
 
 In preview mode, the Hot Reload feature is enabled: any change you make to a markdown file is applied live in the UI.
@@ -15,7 +15,7 @@ In preview mode, the Hot Reload feature is enabled: any change you make to a mar
 To create a new ADR interactively, run:
 
 ```bash
-yarn run adr/new
+npm run adr/new
 ```
 
 ## More information

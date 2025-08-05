@@ -5,6 +5,7 @@ import {
   SyntheticEvent,
   useCallback,
   useEffect,
+  useMemo,
   useReducer,
   useRef,
 } from "react"
@@ -124,6 +125,9 @@ function Grid<TRow extends object>({
   toolbarItems = [],
 }: GridProps<TRow>): ReactNode {
   const [state, dispatch] = useReducer(reducer, { ...initialState, totalRows: rows.length })
+  var allowedRows = useMemo(() => {
+    return rows.filter((r) => !disableRowSelection(r))
+  }, [rows])
 
   const mounted = useRef(false)
   useEffect(() => {
@@ -134,7 +138,9 @@ function Grid<TRow extends object>({
 
     onSelect?.(
       null,
-      state.allSelected ? rows.map((_, index) => index) : Array.from(state.selectedRowIndices),
+      state.allSelected
+        ? allowedRows.map((_, index) => index)
+        : Array.from(state.selectedRowIndices),
     )
   }, [state.selectedRowIndices, state.allSelected, rows, onSelect])
 
@@ -202,7 +208,9 @@ function Grid<TRow extends object>({
               {!state.allSelected && state.selectedRowIndices.size === 0 ? (
                 <>None Selected</>
               ) : (
-                <>Selected {state.allSelected ? rows.length : state.selectedRowIndices.size}</>
+                <>
+                  Selected {state.allSelected ? allowedRows.length : state.selectedRowIndices.size}
+                </>
               )}
             </GridHeading>
           </GridToolbarItem>
